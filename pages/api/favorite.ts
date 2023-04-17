@@ -4,7 +4,7 @@ import prismadb from '@/lib/prismadb'
 import serverAuth from "@/lib/serverAuth"
 import { error } from "console"
 
-export default async function (req: NextApiRequest, res: NextApiResponse) {
+export default async function handler (req: NextApiRequest, res: NextApiResponse) {
     try {
         if (req.method === 'POST') {
             const { currentUser } = await serverAuth(req)
