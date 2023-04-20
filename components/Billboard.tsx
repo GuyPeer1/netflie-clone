@@ -3,15 +3,16 @@ import React, { useCallback } from 'react'
 
 import useBillboard from '@/hooks/useBillboard'
 import PlayButton from './PlayButton'
-// import useInfoModalStore from '@/hooks/useInfoModalStore'
+import useInfoModal from '@/hooks/useInfoModal'
 
 const Billboard: React.FC = () => {
-//   const { openModal } = useInfoModalStore()
+  const { openModal } = useInfoModal()
   const { data } = useBillboard()
 
-//   const handleOpenModal = useCallback(() => {
-//     openModal(data?.id);
-//   }, [openModal, data?.id]);
+  const handleOpenModal = useCallback(() => {
+    openModal(data?.id)
+  }, [openModal, data?.id])
+
   return (
     <div className="relative h-[56.25vw]">
       <video poster={data?.thumbnailUrl} className="w-full h-[56.25vw] object-cover brightness-[60%] transition duration-500" autoPlay muted loop src={data?.videoUrl}></video>
@@ -24,9 +25,9 @@ const Billboard: React.FC = () => {
         </p>
         <div className="flex flex-row items-center mt-3 md:mt-4 gap-3">
           <PlayButton movieId={data?.id} />
-          
+
           <button
-            // onClick={handleOpenModal}
+            onClick={handleOpenModal}
             className="
             bg-white
             text-white
@@ -43,9 +44,9 @@ const Billboard: React.FC = () => {
               hover:bg-opacity-20
               transition
             "
-            >
-              {/* <InformationCircleIcon className="w-4 md:w-7 mr-1" /> */}
-              More Info
+          >
+            {/* <InformationCircleIcon className="w-4 md:w-7 mr-1" /> */}
+            More Info
           </button>
         </div>
       </div>
