@@ -4,7 +4,6 @@ import prismadb from '@/lib/prismadb'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== 'POST') {
-
         return res.status(405).end()
     }
 
@@ -15,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 email,
             }
         })
-
+        
         if (existingUser) {
             return res.status(422).json({ error: 'Email taken' })
         }
@@ -32,8 +31,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             }
         })
     }
-
-
 
     catch (err) {
         console.log('error in register.ts', err)

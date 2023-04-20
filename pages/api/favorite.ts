@@ -2,13 +2,12 @@ import { NextApiRequest, NextApiResponse } from "next"
 import { without } from "lodash"
 import prismadb from '@/lib/prismadb'
 import serverAuth from "@/lib/serverAuth"
-import { error } from "console"
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    console.log('post here')
     try {
         if (req.method === 'POST') {
             const { currentUser } = await serverAuth(req)
-            console.log(currentUser)
             const { moveId } = req.body
 
             const existingMovie = await prismadb.movie.findUnique({
